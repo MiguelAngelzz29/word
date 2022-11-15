@@ -1,24 +1,32 @@
 
 import java.awt.Color;
 import java.awt.Event;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 
 /*
@@ -53,6 +61,7 @@ public class WordJPanel extends javax.swing.JPanel {
     public WordJPanel() {
         initComponents();
         keyBidings();
+        cargarImagenes();
     }
 
     /**
@@ -655,29 +664,26 @@ public class WordJPanel extends javax.swing.JPanel {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jBotonCortar)
-                                .addGap(0, 0, 0)
-                                .addComponent(jBotonCopiar)
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jBotonPegarf)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBotonCortar)
+                        .addGap(0, 0, 0)
+                        .addComponent(jBotonCopiar)
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jBotonPegarf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel7.setBackground(new java.awt.Color(243, 243, 243));
@@ -963,7 +969,6 @@ public class WordJPanel extends javax.swing.JPanel {
                             .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1026,9 +1031,8 @@ public class WordJPanel extends javax.swing.JPanel {
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton15)
                             .addComponent(jButton16))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2))
         );
 
         jPanel8.setBackground(new java.awt.Color(243, 243, 243));
@@ -1366,12 +1370,12 @@ public class WordJPanel extends javax.swing.JPanel {
         jPanel9.setBackground(new java.awt.Color(243, 243, 243));
 
         jList1.setBackground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList1MousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel4.setBackground(new java.awt.Color(243, 243, 243));
@@ -1388,8 +1392,7 @@ public class WordJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap(12, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1859,6 +1862,12 @@ public class WordJPanel extends javax.swing.JPanel {
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         jButton2.setOpaque(true);
         jButton2.setBackground(Color.decode("#F3F3F3"));
+        try{
+         int index = jComboBox3.getSelectedIndex();
+        jComboBox3.setSelectedIndex(index+=1);
+        }catch(Exception e){
+          jComboBox3.setSelectedIndex(15);
+                }
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
@@ -1879,6 +1888,12 @@ public class WordJPanel extends javax.swing.JPanel {
     private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
          jButton5.setOpaque(true);
         jButton5.setBackground(Color.decode("#F3F3F3"));
+         try{
+        int index = jComboBox3.getSelectedIndex();
+        jComboBox3.setSelectedIndex(index-=1);
+        }catch(Exception e){
+            jComboBox3.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_jButton5MousePressed
 
     private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
@@ -2382,15 +2397,11 @@ public class WordJPanel extends javax.swing.JPanel {
     }
                 System.out.println("Fichero guardado en la ruta:");
                 System.out.println(fichero.getAbsolutePath());
-                  
-            }
+             }
         }else if(n == 1){
             System.exit(0);
-        }
-
-                
-        
-        
+         }
+ 
     }//GEN-LAST:event_jButton12MousePressed
 
     private void jButton12MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseReleased
@@ -2398,7 +2409,31 @@ public class WordJPanel extends javax.swing.JPanel {
         jButton12.setBackground(Color.decode("#2d349c"));
     }//GEN-LAST:event_jButton12MouseReleased
 
-    
+    private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
+        int index = jList1.getSelectedIndex();
+        
+        if(index == 0){
+            jComboBox2.setSelectedItem("Tahoma");
+            jComboBox3.setSelectedItem("10");
+        }else if (index == 1){
+            jComboBox2.setSelectedItem("Verdana");
+            jComboBox3.setSelectedItem("14");
+        }else if (index == 2){
+            jComboBox2.setSelectedItem("Segoe");
+            jComboBox3.setSelectedItem("18");
+           
+        }else if (index == 3){
+            jComboBox2.setSelectedItem("Courier");
+            jComboBox3.setSelectedItem("36");
+        }else if (index == 4){
+            jComboBox2.setSelectedItem("Caladea");
+            jComboBox3.setSelectedItem("48");
+        }else if (index == 5){
+            jComboBox2.setSelectedItem("Gadugi");
+            jComboBox3.setSelectedItem("72");
+    }//GEN-LAST:event_jList1MousePressed
+
+    }
     
     
     public void justificar (JButton boton ){
@@ -2580,7 +2615,7 @@ public class WordJPanel extends javax.swing.JPanel {
             }
         });
           
-          
+         
         this.jSlider1.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke(MouseEvent.MOUSE_WHEEL,InputEvent.CTRL_DOWN_MASK),"zoom");
         this.jSlider1.getActionMap().put("zoom", new AbstractAction() {
@@ -2592,6 +2627,55 @@ public class WordJPanel extends javax.swing.JPanel {
             }
         });
       }
+      
+          public void cargarImagenes() {
+        // construct the menuList as a JList
+
+        jList1.setCellRenderer(new ImageListCellRenderer());
+
+// get our images
+        Icon estilo1 = new ImageIcon(WordJPanel.class.getResource("recursos/22.png"));
+        Icon estilo2 = new ImageIcon(WordJPanel.class.getResource("recursos/23.png"));
+        Icon estilo3 = new ImageIcon(WordJPanel.class.getResource("recursos/24.png"));
+        Icon estilo4 = new ImageIcon(WordJPanel.class.getResource("recursos/25.png"));
+        Icon estilo5 = new ImageIcon(WordJPanel.class.getResource("recursos/26.png"));
+        Icon estilo6 = new ImageIcon(WordJPanel.class.getResource("recursos/27.png"));
+
+// add the images to jlabels with text
+        JLabel estilo1Label = new JLabel("", estilo1, JLabel.LEFT);
+        JLabel estilo2Label = new JLabel("", estilo2, JLabel.LEFT);
+        JLabel estilo3Label = new JLabel("", estilo3, JLabel.LEFT);
+        JLabel estilo4Label = new JLabel("", estilo4, JLabel.LEFT);
+        JLabel estilo5Label = new JLabel("", estilo5, JLabel.LEFT);
+        JLabel estilo6Label = new JLabel("", estilo6, JLabel.LEFT);
+
+// create the corresponding panels
+        JPanel estilo1Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel estilo2Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel estilo3Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel estilo4Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel estilo5Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel estilo6Panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+// add the labels onto the panels
+        estilo1Panel.add(estilo1Label);
+        estilo2Panel.add(estilo2Label);
+        estilo3Panel.add(estilo3Label);
+        estilo4Panel.add(estilo4Label);
+        estilo5Panel.add(estilo5Label);
+        estilo6Panel.add(estilo6Label);
+// create a panel array
+        JPanel[] panels = {estilo1Panel, estilo2Panel, estilo3Panel, estilo4Panel, estilo5Panel, estilo6Panel};
+
+// tell the jlist to use the panel array for its data
+        jList1.setListData(panels);
+        for (int i=0;i< panels.length;i++){
+            jList1.setVisibleRowCount(i);
+        }
+       
+         jList1.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+      jList1.setVisibleRowCount(-1);
+      jList1.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bArchivo;
     private javax.swing.JToggleButton bAyuda;
@@ -2658,7 +2742,7 @@ public class WordJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<JPanel> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
